@@ -1,0 +1,34 @@
+<div class="example-container mat-elevation-z8">
+    <mat-table #table  [dataSource] = "dataSource" class = "mat-elevation-z8"> 
+        <ng-container matColumnDef = "name">
+           <th mat-header-cell *matHeaderCellDef> Product Name </th>
+           <td mat-cell *matCellDef = "let element"> {{element.productEO.name}} </td>
+           <th mat-footer-cell *matFooterCellDef> </th>
+        </ng-container>
+        <ng-container matColumnDef = "description">
+           <th mat-header-cell align="center" *matHeaderCellDef>Description</th>
+           <td mat-cell align="center" *matCellDef = "let element"> {{element.productEO.description}} </td>
+           <th mat-footer-cell *matFooterCellDef> </th>
+        </ng-container>
+        <ng-container matColumnDef = "Total No Ordered">
+            <th mat-header-cell *matHeaderCellDef>Total Number Ordered</th>
+            <td mat-cell align="center" *matCellDef = "let element"> {{element.totalNumber}} </td>
+            <th mat-footer-cell *matFooterCellDef> </th>
+         </ng-container>
+        <ng-container matColumnDef = "Order Price">
+            <th mat-header-cell *matHeaderCellDef>Order Price (Rs)</th>
+            <td mat-cell *matCellDef = "let element"> {{element.orderPrice}} </td>
+            <th mat-footer-cell *matFooterCellDef> Total Price: {{ totalPrice}}</th>
+         </ng-container>
+       
+      
+      <!--  <ng-container matColumnDef = "category">
+           <th mat-header-cell *matHeaderCellDef>CategoryName (g)</th>
+           <td mat-cell *matCellDef = "let element"> {{element.category.categoryName}} </td>
+        </ng-container>-->
+        <tr mat-header-row *matHeaderRowDef = "displayedColumns"></tr>
+        <tr mat-row *matRowDef = "let row; columns: displayedColumns;"></tr>
+        <mat-footer-row class="sticky-footer" *matFooterRowDef="displayedColumns"></mat-footer-row>
+
+    </mat-table>
+    </div>

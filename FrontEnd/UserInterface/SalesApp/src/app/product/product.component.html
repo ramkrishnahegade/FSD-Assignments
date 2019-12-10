@@ -1,0 +1,71 @@
+
+<div class="container-fluid">
+    <h1>
+      Add Product
+    </h1>
+    <form #ProductForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+      {{ProductForm.value | json}}
+      {{productModel|json}}
+      <div class="form-group">
+        <label for="">Name :</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="productModel.name" 
+         required #name="ngModel" [class.is-invalid]="name.invalid && name.touched">
+         <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
+      </div>
+  
+      <div class="form-group">
+        <label for="">Description :</label>
+        <input type="description" class="form-control" 
+        name="description" [(ngModel)]="productModel.description">
+      </div>
+      <div class="form-group">
+        <label for="">Price :</label>
+        <input type="text" class="form-control" name="price" [(ngModel)]="productModel.price" 
+        required  pattern="[0-9]*" #price="ngModel" [class.is-invalid]="price.invalid && price.touched">
+           
+        <div *ngIf="(price.invalid && price.touched)">
+            <small class="text-danger" *ngIf="price.errors.required">Price is required</small>
+            <small class="text-danger" *ngIf="price.errors.pattern">Price should be Number</small>
+        </div>
+      
+      </div>
+      
+      <div class="form-group">
+        <label for="">Reorder :</label>
+        <input type="text" name="reorder" class="form-control" [(ngModel)]="productModel.reorder" 
+        required #reorder="ngModel" [class.is-invalid]="reorder.invalid && reorder.touched">
+      </div>
+      <div class="form-group">
+          <label for="">Total Number :</label>
+          <input type="text" name="totalNumberOfProduct" class="form-control" [(ngModel)]="productModel.totalNumberOfProduct" 
+          required #totalNumberOfProduct="ngModel" [class.is-invalid]="totalNumberOfProduct.invalid && totalNumberOfProduct.touched">
+        </div>
+      <div class="mb-3">
+        <label >Stop Order :</label>
+        <div class="form-check" >
+            <input class="form-check-input" name="stopOrder" type="radio"  value="true" [(ngModel)]="productModel.stopOrder" 
+            required #stopOrder="ngModel" [class.is-invalid]="stopOrder.invalid && stopOrder.touched"> 
+          <label for="" class="form-check-label">True</label>
+          
+        </div>
+        <div class="form-check" >
+            <input class="form-check-input"  name="stopOrder" type="radio"  value="false" [(ngModel)]="productModel.stopOrder" 
+            required #stopOrder="ngModel" [class.is-invalid]="stopOrder.invalid && stopOrder.touched">
+          <label for="" class="form-check-label">False</label>
+                  
+      </div>
+      </div>
+  
+  
+      <div class="form-group">
+        <h1>Category :</h1>
+        <label for="">Name :</label>
+        <input type="text" name="categoryName" required #categoryName="ngModel" [class.is-invalid]="categoryName.invalid && catName.touched" class="form-control" [(ngModel)]="productModel.category.categoryName" >
+ 
+        <h2>Add Attributes : </h2>
+        <button class="btn btn-primary">Add Attributes</button>
+      </div>
+  
+      <button [class.disabled]="ProductForm.form.invalid" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
